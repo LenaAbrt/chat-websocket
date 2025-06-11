@@ -14,8 +14,10 @@ function App() {
     const {
         isConnected,
         connect,
-        //todo connectionStatus,
-        //todo sendMessage
+        disconnect,
+        sendMessage,
+        connectionStatus,
+        messages
     } = useWebsocket(WEBSOCKET_URL);
 
 
@@ -45,10 +47,12 @@ function App() {
                 ) : (
                     <>
                         <div>
-                            <ConnectionStatus isConnected={isConnected}/>
+                            <ConnectionStatus isConnected={isConnected} disconnect={disconnect}
+                                              connectionStatus={connectionStatus}
+                            userName={userName}/>
                         </div>
                         <div>
-                            <ChatArea/>
+                            <ChatArea messages={messages}/>
                             <MessageInput handleSendMessage={handleSendMessage}/>
                         </div>
                     </>
